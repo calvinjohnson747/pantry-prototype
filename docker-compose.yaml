@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: pantry-prototype
+    environment:
+      - MYSQL_DATABASE=pantry
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=root
+    ports:
+      - "3306:3306"
