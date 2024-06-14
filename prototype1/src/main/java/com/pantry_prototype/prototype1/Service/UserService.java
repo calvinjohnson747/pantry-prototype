@@ -30,4 +30,19 @@ public class UserService {
     public Items postItems(Items Item){
         return itemRepository.save(Item);   
     }
+
+    public Boolean authUser(String name, String password){
+        List<Users> user = userRepository.findAll();
+        for(Users u: user){
+            if(u.getName().equals(name)){
+                if(u.getPassword().equals(password)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 }

@@ -1,5 +1,7 @@
 package com.pantry_prototype.prototype1.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ public class Users {
     private Integer userID;
 
     @Column
+    @JsonProperty("name")
     private String Name;
 
     @Column

@@ -1,6 +1,7 @@
 package com.pantry_prototype.prototype1.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,20 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity<String> authenticateUser(@RequestBody Users User){
+        String username = User.getName();
+        String password = User.getPassword();
+
+        Boolean auth = userService.authUser(username,password);
+        if(auth){
+            return ResponseEntity.ok("Login Successful");
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Username or Password");
+        }
     }
 
     @GetMapping("/get")
