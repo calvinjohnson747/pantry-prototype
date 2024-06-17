@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        body {
+<style>
+  body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             display: flex;
@@ -16,6 +10,8 @@
         }
         .login-container {
             background-color: #fff;
+            margin: auto;
+            margin-top: 10%;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -46,26 +42,28 @@
         .form-group input[type="submit"]:hover {
             background-color: #45a049;
         }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="loginForm" onsubmit="login(event)">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login">
-            </div>
-        </form>
-        <p id="loginMessage"></p>
-    </div>
+</style>
 
-</body>
-</html>
+<main class="main">
+  <div class="content"> 
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm" (ngsubmit)="login()">
+          <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" ng-model="username" required>
+          </div>
+          <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" ng-model="password" required>
+          </div>
+          <div class="form-group">
+              <input type="submit" value="Login">
+          </div>
+          <p id="loginMessage">{{ loginMessage }}</p>
+      </form>
+  </div>
+  </div>
+</main>
+
+<router-outlet />

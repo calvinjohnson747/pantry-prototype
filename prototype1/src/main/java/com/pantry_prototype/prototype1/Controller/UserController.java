@@ -30,7 +30,7 @@ public class UserController {
     public ResponseEntity<String> authenticateUser(@RequestBody Users User){
         String username = User.getName();
         String password = User.getPassword();
-
+        System.out.println("username: "+username+"\npassword: "+password);
         Boolean auth = userService.authUser(username,password);
         if(auth){
             return ResponseEntity.ok("Login Successful");

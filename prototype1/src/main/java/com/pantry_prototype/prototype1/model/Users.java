@@ -17,7 +17,7 @@ public class Users {
 
     @Column
     @JsonProperty("name")
-    private String Name;
+    private String name;
 
     @Column
     private String password;
@@ -27,7 +27,7 @@ public class Users {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getPassword() {
@@ -39,7 +39,7 @@ public class Users {
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public void setPassword(String password) {
@@ -48,7 +48,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users [userID=" + userID + ", Name=" + Name + ", password=" + password + "]";
+        return "Users [userID=" + userID + ", Name=" + name + ", password=" + password + "]";
     }
     
 }
