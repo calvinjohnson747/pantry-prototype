@@ -1,12 +1,27 @@
-version: '3.8'
+version: '3'
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: pantry-prototype
-    environment:
-      - MYSQL_DATABASE=pantry
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_USER=root
+  backend:
+    image: my-springboot-app
+    build:
+      context: ./prototype1  # Path to your Spring Boot app directory
+      dockerfile: Dockerfile
     ports:
-      - "3306:3306"
+      - "8080:8080"
+    volumes:
+      - /tmp
+    networks:
+      - app-network
+
+  frontend:
+    image: my-angular-app
+    build:
+      context: ./prototype-front/angular-pantry-prototype  
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200" 
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
