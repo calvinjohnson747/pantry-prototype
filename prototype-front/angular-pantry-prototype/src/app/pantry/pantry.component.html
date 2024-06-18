@@ -1,1 +1,29 @@
-<p>pantry works!</p>
+<div *ngIf="items.length>0; else noData">
+        <h2>Items Table</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <td>{{item.itemName}}</td>
+                    <td><button class="delete-btn" (click)="deleteItem(item.itemId)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<div class="form-group">
+    <form [formGroup]="addForm" (ngSubmit)="addItem()">
+    <label for="newItemName">Item:</label>
+    <input type="text" id="item" name="item" formControlName="itemName" placeholder="Enter new item name">
+    <button class="add-btn" type="submit">Add</button>
+    </form>
+  </div>
+
+<ng-template #noData>
+    <p>No data available</p>
+</ng-template>

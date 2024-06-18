@@ -19,16 +19,16 @@ public class UserService {
         this.itemRepository = itemRepository;
     }
 
-    public List<Users> getUsers(){
-        return userRepository.findAll();
-    }
-
     public List<Items> getItems(){
         return itemRepository.findAll();
     }
     
     public Items postItems(Items Item){
         return itemRepository.save(Item);   
+    }
+
+    public void deleteItem(Integer id){
+        itemRepository.deleteById(id);
     }
 
     public Boolean authUser(String name, String password){

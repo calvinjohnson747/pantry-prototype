@@ -83,41 +83,9 @@
                     <td>Item 2</td>
                     <td><button class="delete-btn">Delete</button></td>
                 </tr>
-                <!-- Add more rows as needed -->
             </tbody>
         </table>
         <button class="add-btn">Add</button>
     </div>
-    <script>
-        // JavaScript code to fetch data from backend and populate table
-        document.addEventListener("DOMContentLoaded", function() {
-            fetchItems();
-        });
-
-        async function fetchItems() {
-            try {
-                const response = await fetch('/getitems');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const items = await response.json();
-                populateTable(items);
-            } catch (error) {
-                console.error('Error fetching items:', error);
-            }
-        }
-
-        function populateTable(items) {
-            const tableBody = document.querySelector('#items-table tbody');
-            items.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.id}</td>
-                    <td>${item.itemName}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-    </script>
 </body>
 </html>

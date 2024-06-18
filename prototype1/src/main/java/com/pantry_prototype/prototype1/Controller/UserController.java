@@ -3,7 +3,10 @@ package com.pantry_prototype.prototype1.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping(path="/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     private final UserService userService;
@@ -33,16 +37,12 @@ public class UserController {
         System.out.println("username: "+username+"\npassword: "+password);
         Boolean auth = userService.authUser(username,password);
         if(auth){
-            return ResponseEntity.ok("Login Successful");
+            return ResponseEntity.ok("true");
         }
+    
         else{
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Username or Password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("false");
         }
-    }
-
-    @GetMapping("/get")
-    public List<Users> getUser(){
-        return userService.getUsers();
     }
 
     @GetMapping("/getitems")
@@ -54,5 +54,16 @@ public class UserController {
     public ResponseEntity<Items> postItems(@RequestBody Items items){
         Items InsertedItem = userService.postItems(items);
         return ResponseEntity.ok().body(InsertedItem);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteItem(@PathVariable("id") Integer id){
+        try{
+            userService.deleteItem(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
