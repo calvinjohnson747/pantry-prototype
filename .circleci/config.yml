@@ -4,7 +4,7 @@ jobs:
   build_frontend:
     docker:
       - image: circleci/node:14
-    working_directory: ~/prototype-front/angular-pantry-prototype
+    working_directory: cd ~/prototype-front/angular-pantry-prototype
     steps:
       - checkout
       - run:
@@ -25,8 +25,8 @@ jobs:
 
   build_backend:
     docker:
-      - image: circleci/openjdk:11
-    working_directory: ~/prototype1
+      - image: circleci/openjdk:17
+    working_directory: cd ~/prototype1
     steps:
       - checkout
       - run:
