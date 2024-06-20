@@ -3,7 +3,7 @@ services:
   backend:
     image: my-springboot-app
     build:
-      context: ./prototype1  # Path to your Spring Boot app directory
+      context: ./prototype1  
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
