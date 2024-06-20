@@ -13,7 +13,7 @@ export class AuthService {
 
   login(name: string, password: string): Observable<boolean> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>('http://localhost:8080/auth', { name: name, password: password }, { headers })
+    return this.http.post<any>('http://ec2-54-211-209-155.compute-1.amazonaws.com:8080/auth', { name: name, password: password }, { headers })
       .pipe(
         map(response => {
           if (response == true) {

@@ -31,7 +31,7 @@ export class PantryComponent implements OnInit {
     }
 
     fetchItems(): void {
-      this.httpClient.get<Items[]>('http://localhost:8080/getitems')
+      this.httpClient.get<Items[]>('http://ec2-54-211-209-155.compute-1.amazonaws.com:8080/getitems')
       .subscribe({
         next: (item) => (this.items = item),
         error: (error) => console.error('Error fetching items: ',error)
@@ -41,7 +41,7 @@ export class PantryComponent implements OnInit {
     deleteItem(itemId: number): void{
       if(confirm('Are you sure you want to delete this item?')){
         this.httpClient
-        .delete(`http://localhost:8080/delete/${itemId}`)
+        .delete(`http://ec2-54-211-209-155.compute-1.amazonaws.com:8080/delete/${itemId}`)
         .subscribe({
           next: ()=>{
             this.items = this.items.filter(item => item.itemId!== itemId);
@@ -55,7 +55,7 @@ export class PantryComponent implements OnInit {
     addItem(): void {
         const newItem = this.addForm.value;
         console.log(newItem);
-        this.httpClient.post<Items>('http://localhost:8080/post', newItem)
+        this.httpClient.post<Items>('http://ec2-54-211-209-155.compute-1.amazonaws.com:8080/post', newItem)
           .subscribe({
             next: (addedItem) => {
               this.items.push(addedItem);
