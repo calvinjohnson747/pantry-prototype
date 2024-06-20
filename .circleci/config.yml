@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  node: circleci/node@5
 jobs:
   build_frontend:
     docker:
@@ -31,7 +32,7 @@ jobs:
       - checkout
       - run:
           name: Build Spring Boot application
-          command: mvn clean package -DskipTests
+          command: mvn clean package -DskipTests --file ~/prototype1/pom.xml
       - run:
           name: Build and tag backend Docker image
           command: |
